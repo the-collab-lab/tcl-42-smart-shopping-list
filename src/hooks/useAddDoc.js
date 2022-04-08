@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { db } from '../lib/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
-export default function useAddDoc() {
+async function useAddDoc() {
   const [id, setID] = useState(null);
   const [error, setError] = useState(null);
   
   try {
       const colRef = collection(db, "users");
       const docRef = await addDoc(colRef, {
-        item: itemName,
+        item: "itemName",
       });
       setID(docRef.id)
       console.log('success');
@@ -19,3 +19,5 @@ export default function useAddDoc() {
 
   return { id, error };
 }
+
+export default useAddDoc;
