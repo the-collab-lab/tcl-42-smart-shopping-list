@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { db } from '../lib/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
 
-const ShowData = () => {
+const useSnapshot = () => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
@@ -14,19 +14,7 @@ const ShowData = () => {
     return () => unsubscribe();
   }, []);
 
-  //   console.log('this is docs--', docs);
-
-  return (
-    <div>
-      {docs.map((doc) => {
-        return (
-          <ul>
-            <li>{doc.id}</li>
-          </ul>
-        );
-      })}
-    </div>
-  );
+  return docs;
 };
 
-export default ShowData;
+export default useSnapshot;
