@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { getToken, words } from '@the-collab-lab/shopping-list-utils';
 import { collection, query, limit, getDocs } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { parseToken, buttonStyles } from '../../lib/util';
 import { Header, centeredBox } from '../Layout/Layout';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 
 const Spacer = () => <div className="my-4"></div>;
 
@@ -16,8 +16,9 @@ export default function Welcome() {
   const [error, setError] = useState(null);
 
   const handleClick = () => {
-    const parsedToken = parseToken(getToken(words));
-    setToken(parsedToken);
+    // const parsedToken = parseToken(getToken(words));
+    // setToken(parsedToken);
+    console.log('Creating new lists is no longer supported');
   };
 
   const handleSubmit = async (e) => {
@@ -83,6 +84,7 @@ export default function Welcome() {
           </form>
         </main>
       )}
+			<ArchivalNoticeModal />
     </>
   );
 }
